@@ -520,7 +520,7 @@ function getcookie(req, name, secrets) {
 
   // read from cookie header
   if (header) {
-    var cookies = cookie.parse(header);
+    var cookies = cookie.parseCookie(header);
 
     raw = cookies[name];
 
@@ -610,7 +610,7 @@ function issecure(req, trustProxy) {
 
 function setcookie(res, name, val, secret, options) {
   var signed = 's:' + signature.sign(val, secret);
-  var data = cookie.serialize(name, signed, options);
+  var data = cookie.stringifySetCookie(name, signed, options);
 
   debug('set-cookie %s', data);
 
