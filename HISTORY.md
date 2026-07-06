@@ -1,3 +1,9 @@
+unreleased
+==========
+
+  * Replace `uid-safe` dependency with built-in `crypto.randomBytes` for session ID generation
+    - Session IDs keep the same format as before (32-character base64url strings)
+
 1.18.1 / 2024-10-08
 ==========
 
