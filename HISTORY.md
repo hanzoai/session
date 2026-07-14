@@ -1,7 +1,6 @@
 unreleased
 ==========
 
-  
 ## ⚠️ BREAKING CHANGES
 
   * Change `saveUninitialized` option default from `true` to `false`
@@ -11,6 +10,9 @@ unreleased
   * Expire the session cookie on the response when the session is destroyed
     - Applies to `req.session.destroy()` and to `unset: 'destroy'`, when the request
       came in with a session cookie
+  * Change `unset` option default from `'keep'` to `'destroy'`
+    - Sessions unset via `req.session = null` (or `delete`) are now deleted from the store
+      when the response ends; pass `unset: 'keep'` to restore the previous behavior
 
 ## Other changes
 
