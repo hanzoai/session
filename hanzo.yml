@@ -1,0 +1,17 @@
+# Canonical CI/CD config for hanzoai/session (express-session) — read by the
+# hanzoai/ci reusable workflow (.hanzo/workflows/cicd.yml) and by
+# platform.hanzo.ai.
+#
+# LIBRARY: Express session middleware. No image, no deploy — it ships from a tag.
+#
+# The gate is the mocha suite. It is worth stating what it covers, because this
+# is session middleware and the failure mode is not "throws": the suite asserts
+# cookie attributes (secure, httpOnly, sameSite, domain, path, expiry), session
+# regeneration and destruction, the trust-proxy path, and the rolling/resave/
+# saveUninitialized matrix. Every one of those is a security property that a
+# lint or a build would sail straight past.
+#
+# `npm install`, not `npm ci`: this repo ships no package-lock.json.
+test:
+  - name: test
+    run: npm install && npm test
